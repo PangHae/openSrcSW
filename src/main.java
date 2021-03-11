@@ -1,20 +1,23 @@
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.io.IOException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.parser.Parser;
+import org.jsoup.select.Elements;
+
+
+import java.io.File;
+import java.io.FileOutputStream;
+
+
+
+
 
 public class main {
 
-    public void listFilesForFolder(final File folder){
-        for (final File fileEntry : folder.listFiles()) {
-            if (fileEntry.isDirectory()) {
-                listFilesForFolder(fileEntry);
-            } else {
-                System.out.println(fileEntry.getName());
-            }
-        }
-    }
-    public static void main(String [] args){
-        
+
+    public static void main(String[] args){
 
 
     }
