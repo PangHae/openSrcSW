@@ -56,7 +56,7 @@ public class makeXML {
             transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
 
             DOMSource src = new DOMSource(document);
-            StreamResult result = new StreamResult(new FileOutputStream(new File("./sampleIR.xml")));
+            StreamResult result = new StreamResult(new FileOutputStream(new File("./collection.xml")));
 
             transformer.transform(src, result);
 
