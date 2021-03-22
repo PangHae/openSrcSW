@@ -1,4 +1,11 @@
-import org.w3c.dom.Document;
+import org.jsoup.Jsoup;
+//import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import java.io.File;
+import java.io.IOException;
+
+//import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import javax.xml.parsers.*;
@@ -10,29 +17,65 @@ import javax.xml.transform.stream.StreamResult;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
+//import java.io.File;
 import java.io.FileOutputStream;
 
-public class makeXML {
+public class makeCollection {
+
+    String fileDir;
+    public makeCollection(){
+
+    }
+    public makeCollection(String fileDir){
+        this.fileDir = fileDir;
+    }
+
+    public File[] fileInFolder(){
+        File dir = new File("./2주차 실습 html");
+        File [] files = dir.listFiles();
+
+        /*for(int i = 0; i < files.length; i++){
+            System.out.println("file : " + files[i]);
+        }*/
+        return files;
+    }
+
+    public String[] getTag(File fileName) throws IOException {
+
+        String [] strArr = new String[2];
+
+        try{
+                org.jsoup.nodes.Document doc = Jsoup.parse(fileName, "UTF-8");
+                Elements p = doc.select("p");
+                Elements title = doc.select("title");
+                String strP = p.text();
+                String strTitle = title.text();
+                strArr[0] = strTitle;
+                strArr[1] = strP;
+
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return strArr;
+    }
 
     public void html2XML() throws ParserConfigurationException {
 
         //System.out.println("XML파일을 작성합니다.");
-        fileWork fw = new fileWork();
-        File[] htmls = fw.fileInFolder();
+        File[] htmls = fileInFolder();
         int numFile = htmls.length;
 
         try{
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
 
-            Document document = db.newDocument();
+            org.w3c.dom.Document document = db.newDocument();
             Element docs = document.createElement("docs");
             document.appendChild(docs);
             for(int i = 0; i < numFile; i++){
                 String num = Integer.toString(i);
 
-                String [] strArray = fw.getTag(htmls[i]);
+                String [] strArray = getTag(htmls[i]);
                 String getTitle = strArray[0];
                 String getP = strArray[1];
 
@@ -66,4 +109,5 @@ public class makeXML {
         }
 
     }
+
 }

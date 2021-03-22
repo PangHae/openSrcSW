@@ -1,12 +1,12 @@
 import javax.xml.parsers.ParserConfigurationException;
 
-public class main {
-
+public class kuir {
 
     public static void main(String[] args) throws ParserConfigurationException {
-        makeXML mkX = new makeXML();
+        //String htmlPath= args[0];
 
-        mkX.html2XML();
+        makeCollection mkC = new makeCollection();
+        mkC.html2XML();
 
     }
 
