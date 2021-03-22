@@ -23,15 +23,12 @@ import java.io.FileOutputStream;
 public class makeCollection {
 
     String fileDir;
-    public makeCollection(){
-
-    }
     public makeCollection(String fileDir){
         this.fileDir = fileDir;
     }
 
     public File[] fileInFolder(){
-        File dir = new File("./2주차 실습 html");
+        File dir = new File(this.fileDir);
         File [] files = dir.listFiles();
 
         /*for(int i = 0; i < files.length; i++){
@@ -98,7 +95,7 @@ public class makeCollection {
             transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
 
             DOMSource src = new DOMSource(document);
-            StreamResult result = new StreamResult(new FileOutputStream(new File("./collection.xml")));
+            StreamResult result = new StreamResult(new FileOutputStream(new File("./data/collection.xml")));
 
             transformer.transform(src, result);
 
