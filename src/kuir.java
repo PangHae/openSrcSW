@@ -12,8 +12,8 @@ public class kuir {
             makeCollection mkC = new makeCollection(args[1]);
             mkC.html2XML();
         }else if(option.equals("-k")){
-            makeKeyword mkK = new makeKeyword(args[1]);
-            //mkK.parseXML();
+            String xmlRoute = "./data/" + args[1];
+            makeKeyword mkK = new makeKeyword(xmlRoute);
             mkK.makeIndexXml();
         }
 
