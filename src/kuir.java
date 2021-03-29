@@ -15,6 +15,11 @@ public class kuir {
             String xmlRoute = "./data/" + args[1];
             makeKeyword mkK = new makeKeyword(xmlRoute);
             mkK.makeIndexXml();
+        }else if(option.equals("-i")){
+            String xmlRoute = "./data/" + args[1];
+            indexer ix = new indexer(xmlRoute);
+            ix.calculate4HashMap();
+
         }
 
     }
