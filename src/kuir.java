@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class kuir {
 
-    public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException {
+    public static void main(String[] args) throws ParserConfigurationException, IOException, SAXException, ClassNotFoundException {
         String option = args[0];
 
         if(option.equals("-c")){
@@ -18,7 +18,8 @@ public class kuir {
         }else if(option.equals("-i")){
             String xmlRoute = "./data/" + args[1];
             indexer ix = new indexer(xmlRoute);
-            ix.calculate4HashMap();
+            ix.input2HashMap();//파일 생성
+            ix.printIndex("./data/index.post");//파일 출력
 
         }
 
