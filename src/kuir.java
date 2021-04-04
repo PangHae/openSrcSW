@@ -19,8 +19,13 @@ public class kuir {
             String xmlRoute = "./data/" + args[1];
             indexer ix = new indexer(xmlRoute);
             ix.input2HashMap();//파일 생성
-            ix.printIndex("./data/index.post");//파일 출력
+            //ix.printIndex("./data/index.post");//파일 출력
 
+        }else if(option.equals("-s")){
+            String postRoute = "./data/" + args[1];
+            String query = args[3];
+            searcher sr = new searcher(postRoute, query);
+            sr.checkRank();
         }
 
     }
