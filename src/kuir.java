@@ -23,9 +23,13 @@ public class kuir {
 
         }else if(option.equals("-s")){
             String postRoute = "./data/" + args[1];
-            String query = args[3];
-            searcher sr = new searcher(postRoute, query);
-            sr.checkRank();
+            if(args[2].equals("-q")){
+                String query = args[3];
+                searcher sr = new searcher(postRoute, query);
+                sr.checkRank();
+            }else{
+                System.out.println("Query doesn't exist.");
+            }
         }
 
     }

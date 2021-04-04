@@ -73,7 +73,9 @@ public class searcher {
             result.add(Double.toString(add));
             add = 0;
         }
+        System.out.println("--------------------가중치--------------------");
         System.out.println(result);
+        System.out.println("---------------------순위---------------------");
         return result;
     }
 
@@ -81,25 +83,32 @@ public class searcher {
         ArrayList <String> result = calWithKkma();
         String [] ranking = new String[3];
         ranking[2] = " ";
-        double num = 0.1;
+        double num = 0;
         int index = 0;
         int k = 0;
         while(ranking[2].equals(" ")){
             for(int i = 0; i < result.size(); i++){
-                if(num <= Double.parseDouble(result.get(i))){
+                if(num < Double.parseDouble(result.get(i))){
                     index = i;
                     num = Double.parseDouble(result.get(i));
                 }
             }
             ranking[k] = this.getTitle[index];
             result.set(index, "-1");
-            System.out.println(result);
-            index = 0;
+            //System.out.println(result);
+            for(int i = 0; i < result.size(); i++){
+                if(Double.parseDouble(result.get(i)) == 0){
+                    index = i;
+                    break;
+                }else{
+                    continue;
+                }
+            }
             k++;
+            num = 0;
         }
-
         for(int j = 0; j < ranking.length; j++){
-            System.out.println(ranking[j]);
+            System.out.println((j+1) +"등 : " + ranking[j]);
         }
     }
 }
