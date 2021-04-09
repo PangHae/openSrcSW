@@ -6,10 +6,7 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.*;
 
 public class indexer {
 
@@ -135,13 +132,9 @@ public class indexer {
 
         HashMap index = new HashMap();
         for(int i = 0; i < finalKeywordAndTF.size(); i++){
-            String keySet = "";
+            ArrayList <String> keySet = new ArrayList<>();
             for(int j = 0; j < 5; j++){
-                if(j == 0){
-                    keySet = keySet + finalKeywordAndTF.get(i).get(j+1);
-                }else{
-                    keySet = keySet + ", " + finalKeywordAndTF.get(i).get(j+1);
-                }
+                    keySet.add(finalKeywordAndTF.get(i).get(j+1));
             }
             index.put(finalKeywordAndTF.get(i).get(0), keySet);
         }
@@ -162,7 +155,7 @@ public class indexer {
 
         while(it.hasNext()){
             String key = it.next();
-            String value = (String)hashMap.get(key);
+            ArrayList value = (ArrayList) hashMap.get(key);
             System.out.println(key + " → " + value);
         }
     }
