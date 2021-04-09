@@ -78,9 +78,12 @@ public class searcher {
             num = Double.parseDouble(innerProduct().get(j));
             add = Math.sqrt(add);
 
-            resultToAdd = num / Math.sqrt((double)(wordAL.size())) * add;
-
-            result.add(Double.toString(resultToAdd));
+            resultToAdd = num / (Math.sqrt((double)(wordAL.size())) * add);
+            if(Double.isNaN(resultToAdd )){
+                result.add("0.0");
+            }else{
+                result.add(Double.toString(resultToAdd));
+            }
             add = 0;
         }
 
