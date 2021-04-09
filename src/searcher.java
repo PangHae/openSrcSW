@@ -49,6 +49,7 @@ public class searcher {
         }
     }
 
+
     public ArrayList<String> calcSim() throws IOException, ClassNotFoundException {
         KeywordExtractor ke = new KeywordExtractor();
         KeywordList kl = ke.extractKeyword(this.query, true);
@@ -62,10 +63,12 @@ public class searcher {
 
         HashMap hashMap = getHashMap();
         ArrayList <String> result = new ArrayList<>();
+
         ArrayList <String> weight = innerProduct();
         double add = 0;
         double num;
         double resultToAdd;
+
         for(int j = 0; j < 5; j++){
             for(int i = 0; i < wordAL.size(); i++){
                 ArrayList<String> tmp = (ArrayList<String>) hashMap.get(wordAL.get(i));
@@ -119,7 +122,6 @@ public class searcher {
 
     public void checkRank() throws IOException, ClassNotFoundException {
         ArrayList <String> result = calcSim();
-
         String [] ranking = new String[3];
         ranking[2] = " ";
         double num = 0;
