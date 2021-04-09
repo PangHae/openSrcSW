@@ -49,13 +49,44 @@ public class searcher {
         }
     }
 
-
     public ArrayList<String> calcSim() throws IOException, ClassNotFoundException {
         
     }
+    
+    public ArrayList<String> innerProduct() throws IOException, ClassNotFoundException {
+        //ArrayList <ArrayList<String>> wordTF = new ArrayList<>();
+        KeywordExtractor ke = new KeywordExtractor();
+        KeywordList kl = ke.extractKeyword(this.query, true);
+        ArrayList <String> wordAL = new ArrayList<>();
+        for(int i = 0; i < kl.size(); i++){
+            Keyword kwrd = kl.get(i);
+            String word = kwrd.getString();
+
+            wordAL.add(word);
+        }
+
+        HashMap hashMap = getHashMap();
+        ArrayList <String> result = new ArrayList<>();
+        double add = 0;
+        for(int j = 0; j < 5; j++){
+            for(int i = 0; i < wordAL.size(); i++){
+                ArrayList<String> tmp = (ArrayList<String>) hashMap.get(wordAL.get(i));
+                String [] splitStr = tmp.get(j).split(", ");
+                add = add + Double.parseDouble(splitStr[1]);
+            }
+            result.add(Double.toString(add));
+            add = 0;
+        }
+        System.out.println("--------------------가중치--------------------");
+        System.out.println(result);
+        System.out.println("---------------------순위---------------------");
+        return result;
+    }
+
 
     public void checkRank() throws IOException, ClassNotFoundException {
         ArrayList <String> result = calcSim();
+
         String [] ranking = new String[3];
         ranking[2] = " ";
         double num = 0;
