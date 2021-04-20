@@ -32,15 +32,13 @@ public class genSnippet {
         int [] count = {0,0,0,0,0};
         String [] cutQuery;
         cutQuery = query.split(" ");
-        int j = 0;
-        for(int i = 0;  i < cutQuery.length; i++){
-            if(getFile.get(j).contains(cutQuery[i])){
-                count[i]++;
+
+        for(int j = 0; j < 5; j++){
+            for(int i = 0;  i < cutQuery.length; i++){
+                if(getFile.get(j).contains(cutQuery[i])){
+                    count[i]++;
+                }
             }
-            if(j == 5){
-                break;
-            }
-            j++;
         }
         return count;
     }
